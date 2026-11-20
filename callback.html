@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Authorization result - Aves Belissimas Studio</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:720px;margin:48px auto;padding:0 16px;line-height:1.6;color:#1a1a1a}
+  code,pre{background:#f1f1f1;padding:2px 6px;border-radius:4px;word-break:break-all;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<h1>Authorization result</h1>
+<p id="msg">Reading the result...</p>
+<pre id="out"></pre>
+<p><a href="index.html">Back to home</a></p>
+<script>
+  // This page only shows the values from the address bar. It does not send them anywhere.
+  var p = new URLSearchParams(location.search);
+  var out = [];
+  ["code","state","scopes","error","error_description"].forEach(function(k){ if(p.get(k)) out.push(k + ": " + p.get(k)); });
+  document.getElementById("msg").textContent = out.length ? "Copy the values below and give them to the app owner." : "No authorization data in this address.";
+  document.getElementById("out").textContent = out.join("\n");
+  if (location.search) history.replaceState(null, "", location.pathname);
+</script>
+</body>
+</html>
